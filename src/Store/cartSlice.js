@@ -18,6 +18,7 @@ const cartSlice = createSlice({
       if (existingItem) {
         existingItem.quantity++;
         existingItem.totalPrice += newItem.price;
+        state.totalQuantity++;
       } else {
         state.itemsList.push({
           id: newItem.id,
@@ -33,7 +34,7 @@ const cartSlice = createSlice({
     // remove cart function
     removeFromCart() {},
     setShowCart(state) {
-      state.showCart = true;
+      state.showCart = !state.showCart;
     },
   },
 });
