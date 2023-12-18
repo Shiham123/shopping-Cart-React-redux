@@ -4,7 +4,7 @@ import Product from './Product';
 const Products = () => {
   const [cartData, setCartData] = useState([]);
   useEffect(() => {
-    fetch('/public/data.json')
+    fetch('/data.json')
       .then((response) => response.json())
       .then((data) => setCartData(data))
       .catch((error) => console.log(error));

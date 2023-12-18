@@ -1,4 +1,4 @@
-// import Auth from './components/Auth';
+import Auth from './components/Auth';
 import Layout from './components/Layout';
 
 function App() {
