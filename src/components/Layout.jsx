@@ -6,7 +6,13 @@ import CartItems from './Cart/CartItems';
 import { useSelector } from 'react-redux';
 
 const Layout = () => {
+  let total = 0;
   const showCart = useSelector((state) => state.cart.showCart);
+  const itemsList = useSelector((state) => state.cart.itemsList);
+
+  itemsList.forEach((item) => {
+    total += item.totalPrice;
+  });
 
   return (
     <>
@@ -15,7 +21,7 @@ const Layout = () => {
         <Products />
         {showCart && <CartItems />}
         <div className="total-price">
-          <h3>Total: ${10}</h3>
+          <h3>Total: ${total}</h3>
           <button className="orderBtn">Place Order</button>
         </div>{' '}
       </div>
