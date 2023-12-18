@@ -1,8 +1,27 @@
 import PropTypes from 'prop-types';
 import '../cart.scss';
 
+import { FiMinusCircle, FiPlusCircle } from 'react-icons/fi';
+import { useDispatch } from 'react-redux';
+import { cartActions } from '../../Store/cartSlice';
+
 const CartItem = (props) => {
   const { id, price, name, totalPrice, quantity } = props;
+  const dispatch = useDispatch();
+
+  const incrementCartItem = () => {
+    dispatch(
+      cartActions.addToCart({
+        name,
+        id,
+        price,
+      })
+    );
+  };
+
+  const decrementCartItem = () => {
+    dispatch(cartActions.removeFromCart(id));
+  };
 
   return (
     <div className="cartItem">
@@ -10,6 +29,8 @@ const CartItem = (props) => {
       <p>per item price : ${price} /-</p>
       <p>Total Price : ${totalPrice}</p>
       <p>Total item : {quantity}</p>
+      <FiPlusCircle onClick={incrementCartItem} size={50} />
+      <FiMinusCircle onClick={decrementCartItem} size={50} />
     </div>
   );
 };
